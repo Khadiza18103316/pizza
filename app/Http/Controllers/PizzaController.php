@@ -15,7 +15,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        return view ('pizza.index');
+        $pizzas = Pizza::get();
+        return view ('pizza.index', compact('pizzas'));
     }
 
     /**
@@ -36,8 +37,8 @@ class PizzaController extends Controller
      */
     public function store(PizzaStoreRequest $request)
     {
-        $path = $request->image->store('public/pizza');
-        dd($path);
+        $image = $request->file('image')->store('public/pizza');
+    
         Pizza::create([
           'name' =>$request->name,
           'description' => $request-> description,
@@ -45,7 +46,7 @@ class PizzaController extends Controller
           'medium_pizza_price'=> $request->medium_pizza_price,
           'large_pizza_price'=> $request->large_pizza_price,
           'category' => $request->category,
-          'image' => $path,
+          'image' => $image,
         ]);
         return redicate()->route('pizza.index')->with('message','Pizza added successfully!');
     }
