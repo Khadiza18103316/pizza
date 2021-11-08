@@ -5,7 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">All Pizza</div>
+                    <div class="card-header">All Pizza
+                        <a href="{{ route('pizza.create') }}">
+                            <button type="button" class="btn btn-success" style="float: right"> Add pizza</button>
+                        </a>
+                    </div>
 
                     <div class="card-body">
                         @if (session('message'))
@@ -27,8 +31,9 @@
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                 </tr>
-                                <thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
+                                @if (count($pizzas) > 0)
                                     @foreach ($pizzas as $key => $pizza)
                                         <tr>
                                             <th scope="row">{{ $key + 1 }}</th>
@@ -39,12 +44,53 @@
                                             <td>{{ $pizza->small_pizza_price }}</td>
                                             <td>{{ $pizza->medium_pizza_price }}</td>
                                             <td>{{ $pizza->large_pizza_price }}</td>
-                                            <td><button class="btn btn-primary">Edit</button></dt>
-                                            <td><button class="btn btn-danger">Delete</button></dt>
+                                            <td><a href="{{ route('pizza.edit', $pizza->id) }}"><button
+                                                        class="btn btn-primary">Edit</button></a></td>
+                                            <td><button class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#exampleModal{{ $pizza->id }}">Delete</button>
+                                            </td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $pizza->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <form action="{{ route('pizza.destroy', $pizza->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="exampleModalLabel{{ $pizza->id }}">Delete
+                                                                    confiramation
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-fidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-danger">Delete
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </tr>
                                     @endforeach
-                                </tbody>
+
+                                @else
+                                    <p> No Pizza to Show</p>
+                                @endif
+
+
+                            </tbody>
                         </table>
+                        {{ $pizzas->links() }}
                     </div>
                 </div>
             </div>
