@@ -49,7 +49,6 @@
                                     placeholder="medium pizza price">
                                 <input type="number" name="large_pizza_price" class="form-control"
                                     placeholder="large pizza price">
-
                             </div>
                             <div class="form-group">
                                 <label for="description">Category</label>
