@@ -48,7 +48,7 @@ class PizzaController extends Controller
           'category' => $request->category,
           'image' => $path,
         ]);
-        return redicate()->route('pizza.index')->with('message','Pizza added successfully!');
+        return redirect()->route('pizza.index')->with('message','Pizza added successfully!');
     }
 
     /**
