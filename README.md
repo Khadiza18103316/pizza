@@ -1,4 +1,4 @@
-if u want this progect first of all you have to do git clone
+if u want this progect first of all you have to do git clone,
 git clone: git clone https://github.com/Khadiza18103316/pizza.git or git clone git@github.com:Khadiza18103316/pizza.git in your project directory.
 then run "composer update" this commant
 then run "cp .env.example .env"
