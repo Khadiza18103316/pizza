@@ -10,7 +10,7 @@
                     <div class="card-body">
 
                         <form action="{{route('frontpage')}}" method="get">
-                           <a href="/">Back</a>
+                           <a class="list-group-item list-item-action" href="/">Back</a>
                             <input type="submit" value="Vegetarian" name="category" class="list-group-item list-group-item-action">
                             <input type="submit" value="Nonvegetarian" name="category" class="list-group-item list-group-item-action">
                             <input type="submit" value="Traditional" name="category" class="list-group-item list-group-item-action">
@@ -23,8 +23,7 @@
 
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Pizza</div>
-
+                    <div class="card-header">Pizza({{count($pizzas)}} pizza)</div>
                     <div class="card-body">
                         <div class="row">
                             @forelse($pizzas as $pizza)
