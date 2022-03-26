@@ -6,7 +6,7 @@ then run "php artisan key:generate"
 then create a new database in your mysql and also write database name in .env file.
 then run "php artisan migrate"
 then run "php artisan db:seed"
-then run "php artisan link:storage"
+then run "php artisan storage:link"
 then run "php artisan serve"
 and see the project
 
